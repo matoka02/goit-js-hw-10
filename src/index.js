@@ -1,8 +1,5 @@
 
 
-
-
-
 const select = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const textError = document.querySelector('.error');
@@ -14,7 +11,7 @@ const API_KEY = 'live_Nyc5epOZ5A7aIisug3oaSTpi5tyQSrOU7MxmwOH7IUlCWiCTMoHx2WLptY
 
 
 
-// коллекция пород
+// Коллекция пород
 
 function fetchBreeds() {
     return fetch(`${LIST_URL}`)
@@ -41,7 +38,9 @@ function createOptions(arr) {
     // console.log(markup);        // пример разметки
 }
 
-// информация о коте
+
+
+// Информация о коте
 
 select.addEventListener('change', onSearch);
 
@@ -79,29 +78,18 @@ function fetchCatByBreed(breedId) {
 };
 
 
-const book = {
-    title: "The Last Kingdom",
-    author: "Bernard Cornwell",
-    breeds: ["historical prose", "adventure"],
-    isPublic: true,
-    rating: 8.38,
-  };
-  
-  // Деструктуризируем
-  const { title, author, isPublic, rating, coverImage } = book;
-  console.log(title); // undefined
 
 function createMarkup(arr) {
-    console.log(arr);
-    const markup = arr.map(item => 
+    console.log(arr);  //object
+    const markup = arr.map(({ breeds, id, url, width} ) => 
+
+// console.log(breeds)  //object
 
     `<div>
-    <p>Name: ${item.breeds.name}</p>
-    <img src="${item.url}" width="400" height="200" alt="">
-    <p>Temperament: </p>
-    <p>Origin: </p>
-    <p>Description: </p>
-    <p>Life span: </p>
+    <p>Name: ${breeds.name}</p>
+    <img src="${url}" width="400" height="200" alt="">
+    <p>Temperament: ${breeds.temperament}</p>
+    <p>Description: ${breeds.description}</p>
     </div>`
     )
     .join('');
