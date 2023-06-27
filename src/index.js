@@ -59,17 +59,12 @@ function onSearch(evt) {
     }
 
     fetchCatByBreed(breedId).then(data => {
+        // const {breeds} = data;
+        // console.log(breeds);
         console.log(data);
         createMarkup(data)
     });
 }
-
-function createMarkup(cats) {
-    const markup = cats.map(cat => `gg`).join('');
-
-    catInfo.insertAdjacentHTML('beforeend', markup)
-};
-
 
 function fetchCatByBreed(breedId) {
     return fetch(`${BASE_URL}?limit=10&breed_ids=${breedId}&api_key=${API_KEY}`)
@@ -81,4 +76,35 @@ function fetchCatByBreed(breedId) {
         return resp.json()
     })
     .catch(err => console.error(err))
+};
+
+
+const book = {
+    title: "The Last Kingdom",
+    author: "Bernard Cornwell",
+    breeds: ["historical prose", "adventure"],
+    isPublic: true,
+    rating: 8.38,
+  };
+  
+  // Деструктуризируем
+  const { title, author, isPublic, rating, coverImage } = book;
+  console.log(title); // undefined
+
+function createMarkup(arr) {
+    console.log(arr);
+    const markup = arr.map(item => 
+
+    `<div>
+    <p>Name: ${item.breeds.name}</p>
+    <img src="${item.url}" width="400" height="200" alt="">
+    <p>Temperament: </p>
+    <p>Origin: </p>
+    <p>Description: </p>
+    <p>Life span: </p>
+    </div>`
+    )
+    .join('');
+
+    catInfo.insertAdjacentHTML('beforeend', markup)
 };
