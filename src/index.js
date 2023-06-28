@@ -1,5 +1,7 @@
 "use strict";
-
+import SlimSelect from "slim-select";
+import { Notify } from "notiflix";
+import './sass/index.scss';
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api";
 
 const select = document.querySelector('.breed-select');
@@ -7,8 +9,13 @@ const loader = document.querySelector('.loader');
 const textError = document.querySelector('.error');
 const catInfo = document.querySelector('.cat-info');
 
+
 textError.setAttribute('hidden', true);
 catInfo.style.display = 'none';
+
+// new SlimSelect({
+//     select: '#selectElement'
+//     })
 
 // Коллекция пород
 
@@ -16,6 +23,7 @@ fetchBreeds().then(data => {
     // console.log(typeof data);   // object
     if (Object.keys(data).length === 0) {
         textError.setAttribute('hidden', false);
+        Notify.failure('Oops! Something went wrong! Try reloading the page!')
         return
     } else{
     // console.log(Object.keys(data).length);
@@ -50,10 +58,11 @@ function onSearch(evt) {
         return;
     } else if (breedId !== '') {
         textError.setAttribute('hidden', false);
+        Notify.failure('Oops! Something went wrong! Try reloading the page!')
         return
     } else {
         fetchCatByBreed(breedId).then(data => {
-            console.log(data);      //object
+            // console.log(data);      //object
             catInfo.style.display = 'block';
             createMarkup(data)
         });
