@@ -25,7 +25,7 @@ function fetchBreeds() {
 // Информация о коте
 
 function fetchCatByBreed(breedId) {
-    return fetch(`${BASE_URL}?breed_ids=${breedId}&api_key=${API_KEY}5`)
+    return fetch(`${BASE_URL}?breed_ids=${breedId}&api_key=${API_KEY}`)
     .then(resp => {
         // console.log(resp);      // приходит ответ на запрос
         if(!resp.ok){
