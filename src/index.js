@@ -56,13 +56,13 @@ function onSearch(evt) {
     if(!breedId){
         alert('Empty field');
         return;
-    } else if (breedId !== '') {
+    } else if (breedId === '') {
         textError.setAttribute('hidden', false);
         Notify.failure('Oops! Something went wrong! Try reloading the page!')
         return
     } else {
         fetchCatByBreed(breedId).then(data => {
-            // console.log(data);      //object
+            console.log(data);      //object
             catInfo.style.display = 'block';
             createMarkup(data)
         });
