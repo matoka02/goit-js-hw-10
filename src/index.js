@@ -13,10 +13,6 @@ const catInfo = document.querySelector('.cat-info');
 textError.setAttribute('hidden', true);
 catInfo.style.display = 'none';
 
-// new SlimSelect({
-//     select: '#selectElement'
-//     })
-
 // Коллекция пород
 
 fetchBreeds().then(data => {
@@ -37,8 +33,11 @@ function createOptions(arr) {
     const markup = arr.map(item => `<option value="${item.id}">${item.name}</option>`).join('');
 
     select.innerHTML = markup;
-}
 
+    // new SlimSelect({
+    //     select: '#selectElement',
+    //     })
+}
 
 
 // Информация о коте
