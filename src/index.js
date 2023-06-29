@@ -27,7 +27,8 @@ fetchBreeds().then(data => {
         return
     } else{
     // console.log(Object.keys(data).length);
-    createOptions(data)  }  
+
+    createOptions(data)}  
 });
 
 function createOptions(arr) {
@@ -37,6 +38,7 @@ function createOptions(arr) {
 
     select.innerHTML = markup;
 }
+
 
 
 // Информация о коте
@@ -63,7 +65,7 @@ function onSearch(evt) {
     } else {
         fetchCatByBreed(breedId).then(data => {
             console.log(data);      //object
-            catInfo.style.display = 'block';
+
             createMarkup(data)
         });
     }
@@ -72,7 +74,7 @@ function onSearch(evt) {
 
 function createMarkup(arr) {
     loader.setAttribute('hidden', true);
-
+    catInfo.style.display = 'block';
     console.log(arr);        //object
 
     const markup = arr.map(({ breeds, id, url, width} ) => 
