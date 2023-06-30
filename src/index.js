@@ -43,11 +43,12 @@ function createOptions(arr) {
 // Информация о коте
 
 select.addEventListener('change', onSearch);
+loader.setAttribute('hidden', false);
 
 function onSearch(evt) {
     evt.preventDefault();
     catInfo.innerHTML = '';
-    loader.setAttribute('hidden', false);
+    // loader.setAttribute('hidden', false);
     // console.dir(evt.currentTarget);
     // console.dir(evt.currentTarget.value);
     const breedId = evt.currentTarget.value.trim();
@@ -62,7 +63,8 @@ function onSearch(evt) {
         Notify.failure('Oops! Something went wrong! Try reloading the page!')
         return
     } else {
-        fetchCatByBreed(breedId).then(data => {
+
+loader.setAttribute('hidden', true);        fetchCatByBreed(breedId).then(data => {
             console.log(data);      //object
 
             createMarkup(data)
@@ -72,7 +74,7 @@ function onSearch(evt) {
 
 
 function createMarkup(arr) {
-    loader.setAttribute('hidden', true);
+    
     catInfo.style.display = 'block';
     console.log(arr);        //object
 
