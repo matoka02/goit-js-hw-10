@@ -1,5 +1,6 @@
 "use strict";
 import SlimSelect from "slim-select";
+import 'slim-select/dist/slimselect.css'
 import { Notify } from "notiflix";
 import './sass/index.scss';
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api";
@@ -34,10 +35,10 @@ function createOptions(arr) {
 
     select.innerHTML = markup;
 
-    // new SlimSelect({
-    //     select: '#selectElement',
-    //     })
-}
+    new SlimSelect({
+        select: '#selectElement',
+        })
+};
 
 
 // Информация о коте
