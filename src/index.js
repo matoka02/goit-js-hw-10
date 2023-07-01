@@ -62,15 +62,15 @@ function onSearch(evt) {
         textError.setAttribute('hidden', false);
         Notify.failure('Oops! Something went wrong! Try reloading the page!')
         return
-    } else {
+    } else {       
+        fetchCatByBreed(breedId).then(data => {
+        console.log(data);      //object
 
-loader.setAttribute('hidden', true);        fetchCatByBreed(breedId).then(data => {
-            console.log(data);      //object
-
-            createMarkup(data)
+        createMarkup(data);            
         });
-    }
-}
+    }; 
+    loader.setAttribute('hidden', true);  
+}; 
 
 
 function createMarkup(arr) {
