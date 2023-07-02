@@ -66,11 +66,11 @@ function onSearch(evt) {
     } else {       
         fetchCatByBreed(breedId).then(data => {
         console.log(data);      //object
-
+        loader.setAttribute('hidden', true);  
         createMarkup(data);            
         });
     }; 
-    loader.setAttribute('hidden', true);  
+
 }; 
 
 
