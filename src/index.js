@@ -43,13 +43,13 @@ function createOptions(arr) {
 
 // Информация о коте
 
-select.addEventListener('change', onSearch);
 loader.setAttribute('hidden', false);
+
+select.addEventListener('change', onSearch);
 
 function onSearch(evt) {
     evt.preventDefault();
     catInfo.innerHTML = '';
-    // loader.setAttribute('hidden', false);
     // console.dir(evt.currentTarget);
     // console.dir(evt.currentTarget.value);
     const breedId = evt.currentTarget.value.trim();
@@ -64,10 +64,14 @@ function onSearch(evt) {
         Notify.failure('Oops! Something went wrong! Try reloading the page!')
         return
     } else {       
-        fetchCatByBreed(breedId).then(data => {
+        fetchCatByBreed(breedId)
+        .then(data => {
         console.log(data);      //object
         loader.setAttribute('hidden', true);  
         createMarkup(data);            
+        })
+        .finally(()=>{
+            loader.setAttribute('hidden', true);
         });
     }; 
 
