@@ -10,7 +10,6 @@ const loader = document.querySelector('.loader');
 const textError = document.querySelector('.error');
 const catInfo = document.querySelector('.cat-info');
 
-
 textError.setAttribute('hidden', true);
 catInfo.style.display = 'none';
 
@@ -19,9 +18,9 @@ catInfo.style.display = 'none';
 fetchBreeds().then(data => {
     // console.log(typeof data);   // object
     if (Object.keys(data).length === 0) {
-        textError.setAttribute('hidden', false);
-        Notify.failure('Oops! Something went wrong! Try reloading the page!')
-        return
+        textError.setAttribute('hidden', false);      // видно
+        Notify.failure('Oops! Something went wrong! Try reloading the page!');
+        return;
     } else{
     // console.log(Object.keys(data).length);
 
@@ -49,6 +48,7 @@ select.addEventListener('change', onSearch);
 
 function onSearch(evt) {
     evt.preventDefault();
+    loader.setAttribute('hidden', false);
     catInfo.innerHTML = '';
     // console.dir(evt.currentTarget);
     // console.dir(evt.currentTarget.value);
@@ -62,12 +62,11 @@ function onSearch(evt) {
     } else if (breedId === '') {
         textError.setAttribute('hidden', false);
         Notify.failure('Oops! Something went wrong! Try reloading the page!')
-        return
+        return;
     } else {       
         fetchCatByBreed(breedId)
         .then(data => {
         console.log(data);      //object
-        loader.setAttribute('hidden', true);  
         createMarkup(data);            
         })
         .finally(()=>{
@@ -79,7 +78,6 @@ function onSearch(evt) {
 
 
 function createMarkup(arr) {
-    
     catInfo.style.display = 'block';
     console.log(arr);        //object
 
